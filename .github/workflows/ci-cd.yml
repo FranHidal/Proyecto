@@ -1,0 +1,32 @@
+name: Build and Deploy Docker Image
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build_and_push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the repo
+        uses: actions/checkout@v2
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USUARIO }}
+          password: ${{ secrets.DOCKER_CONTRASENA }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: franhidal/proyecto:latest
+
+      - name: Deploy locally
+        run: |
+          docker pull franhidal/proyecto:latest
+          docker stop proyecto || true
+          docker rm proyecto || true
+          docker run -d --name proyecto -p 8088:80 franhidal/proyecto:latest
