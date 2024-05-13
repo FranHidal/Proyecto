@@ -9,34 +9,39 @@
 <body>
     <h1>Lista de actividades</h1>
 
-    <ul>
-        <li>
-            <div class="datos-recuadro" id="proyecto1">
-                <h2>Nombre del Proyecto 1</h2>
-                <p><strong>Actividades:</strong> Descripción de las actividades del Proyecto 1</p>
-                <p><strong>Lider:</strong> Líder del Proyecto 1</p>
-                <p><strong>Fecha de inicio de actividades:</strong> 2024-05-01</p>
-                <p><strong>Fecha de finalización:</strong> 2024-06-30</p>
-                <form class="eliminar-formulario" action="/eliminar_proyecto/proyecto1" method="post">
-                    <button type="submit">Eliminar</button>
-                </form>
-            </div>
-        </li>
-        <li>
-            <div class="datos-recuadro" id="proyecto2">
-                <h2>Nombre del Proyecto 2</h2>
-                <p><strong>Actividades:</strong> Descripción de las actividades del Proyecto 2</p>
-                <p><strong>Lider:</strong> Líder del Proyecto 2</p>
-                <p><strong>Fecha de inicio de actividades:</strong> 2024-07-01</p>
-                <p><strong>Fecha de finalización:</strong> 2024-08-31</p>
-                <form class="eliminar-formulario" action="/eliminar_proyecto/proyecto2" method="post">
-                    <button type="submit">Eliminar</button>
-                </form>
-            </div>
-        </li>
+    <ul id="lista-proyectos">
+        <!-- Aquí se agregarán dinámicamente los elementos de los proyectos -->
     </ul>
 
     <a href="gestor.html">Volver al Inicio</a>
 
+    <script>
+        // Obtener los datos almacenados en localStorage
+        const proyectoGuardado = localStorage.getItem('proyecto');
+        
+        // Verificar si hay datos almacenados
+        if (proyectoGuardado) {
+            // Convertir los datos de cadena JSON a objeto JavaScript
+            const proyecto = JSON.parse(proyectoGuardado);
+            
+            // Crear un nuevo elemento de lista para mostrar el proyecto
+            const nuevoProyecto = document.createElement('li');
+            nuevoProyecto.innerHTML = `
+                <div class="datos-recuadro">
+                    <h2>${proyecto.nombre}</h2>
+                    <p><strong>Actividades:</strong> ${proyecto.descripcion}</p>
+                    <p><strong>Lider:</strong> ${proyecto.propietario}</p>
+                    <p><strong>Fecha de inicio de actividades:</strong> ${proyecto.fechaInicio}</p>
+                    <p><strong>Fecha de finalización:</strong> ${proyecto.fechaFin}</p>
+                </div>
+            `;
+            
+            // Agregar el nuevo elemento de lista a la lista de proyectos
+            document.getElementById('lista-proyectos').appendChild(nuevoProyecto);
+        } else {
+            // Mostrar un mensaje si no hay datos almacenados
+            document.getElementById('lista-proyectos').innerHTML = '<p>No hay proyectos almacenados</p>';
+        }
+    </script>
 </body>
 </html>
