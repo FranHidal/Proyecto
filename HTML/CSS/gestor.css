@@ -1,0 +1,68 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.datos-recuadro {
+    width: 50%;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.datos-recuadro label {
+    font-weight: bold;
+}
+
+.datos-recuadro input,
+.datos-recuadro textarea,
+.datos-recuadro button {
+    margin-bottom: 10px;
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.datos-recuadro button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.datos-recuadro button:hover {
+    background-color: #0056b3;
+}
+
+.mensaje-guardado {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    border-radius: 3px;
+    text-align: center;
+    display: none;
+}
+
+.ver-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #17a2b8;
+    color: white;
+    text-decoration: none;
+    border-radius: 3px;
+}
+
+.ver-btn:hover {
+    background-color: #138496;
+}
